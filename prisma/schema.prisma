@@ -17,7 +17,7 @@ model Users {
   id            String     @id @default(cuid())
   name          String?
   email         String     @unique
-  emailVerified DateTime?
+  emailVerified String
   image         String?
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
@@ -37,6 +37,7 @@ model Playlist {
   editionId       String
   editionRelation Editons @relation(fields: [editionId], references: [id])
   songId          String
+  songRelation    Songs   @relation(fields: [songId], references: [id])
   playlistOrder   Int
 }
 
@@ -45,7 +46,8 @@ model Songs {
   title      String
   Artist     String
   sampleAddr String?
-  Notebook   Notebook[]
+  playlist   Playlist[]
+  notebook   Notebook[]
 }
 
 model Notebook {
