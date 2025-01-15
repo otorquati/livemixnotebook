@@ -1,18 +1,20 @@
 import { SearchIcon } from "lucide-react";
 import Header from "./_components/header";
 import { Button } from "./_components/ui/button";
-import { Calendar } from "./_components/ui/calendar";
 import { Input } from "./_components/ui/input";
 import { db } from "./_lib/prisma";
 import PlayListItem from "./_components/playlist-items";
 import NotebookItem from "./_components/notebook-item";
 import { Card, CardContent } from "./_components/ui/card";
+import MyDatePicker from "./_components/mydatepicker";
 
-const Home = async() => {
+const Home = async () => {
   // Chama o banco de dados
   const playlist = await db.playlist.findMany({})
+  // console.log({playlist})
   const notebook = await db.notebook.findMany({})
-  console.log({playlist})
+  {/*const editions = await db.editons.findMany({})*/}
+
   return ( 
     <>
     <Header />
@@ -30,15 +32,14 @@ const Home = async() => {
     </div>
 
     {/* CALENDÁRIO DAS PLAYLISTS */ }
-    <div className="p-2 flex flex-col items-center">
-      <h2 className="font-bold">Escolha a data da Playlist</h2>
-      <Calendar></Calendar>
-    </div>
-
-    {/* PLAYLIST DA ÚLTIMA EDIÇÃO */}
+   <div className="flex justify-center">
+      <MyDatePicker />
+   </div>
+      
+     {/* PLAYLIST DA ÚLTIMA EDIÇÃO */}
     <h2 className="p-2 mb-2 mt-2
-     text-xs font-bold uppercase text-yellow-400">Última Edição: 10/01/2025</h2>
-     <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+     text-xs font-bold uppercase text-yellow-400">Edição n. 807 - Quarta-Feira, 15 de janeiro</h2>
+     <div className="flex gap-2 overflow-auto [&::-webkit-scrollbar]:hidden">
       {playlist.map(playlist => (<PlayListItem key={playlist.id} playlist={playlist}/>))}
      </div>
 
