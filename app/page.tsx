@@ -5,12 +5,17 @@ import { Input } from "./_components/ui/input";
 import { db } from "./_lib/prisma";
 import PlayListItem from "./_components/playlist-items";
 import NotebookItem from "./_components/notebook-item";
-import { Card, CardContent } from "./_components/ui/card";
 import MyDatePicker from "./_components/mydatepicker";
+import { Card, CardContent } from "./_components/ui/card";
 
 const Home = async () => {
   // Chama o banco de dados
-  const playlist = await db.playlist.findMany({})
+  const playlist = await db.songs.findMany({
+    include: {
+      playlist: true
+    }
+  })
+
   // console.log({playlist})
   const notebook = await db.notebook.findMany({})
   {/*const editions = await db.editons.findMany({})*/}

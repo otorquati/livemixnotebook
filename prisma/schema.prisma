@@ -24,21 +24,15 @@ model Users {
   Notebook      Notebook[]
 }
 
-model Editons {
-  id        String     @id @default(uuid())
-  editionId String
-  createAt  DateTime   @default(now())
-  upadtedAt DateTime   @updatedAt
-  Playlist  Playlist[]
-}
-
-model Playlist {
-  id              String  @id @default(uuid())
-  editionId       String
-  editionRelation Editons @relation(fields: [editionId], references: [id])
-  songId          String
-  songRelation    Songs   @relation(fields: [songId], references: [id])
-  playlistOrder   Int
+model Notebook {
+  id           String   @id @default(cuid())
+  userId       String
+  userRelation Users    @relation(fields: [userId], references: [id])
+  songId       String
+  songRelation Songs    @relation(fields: [songId], references: [id])
+  ranking      Int
+  createAt     DateTime @default(now())
+  upadtedAt    DateTime @updatedAt
 }
 
 model Songs {
@@ -50,13 +44,19 @@ model Songs {
   notebook   Notebook[]
 }
 
-model Notebook {
-  id           String   @id @default(cuid())
-  userId       String
-  userRelation Users    @relation(fields: [userId], references: [id])
-  songId       String
-  songRelation Songs    @relation(fields: [songId], references: [id])
-  ranking      Int
-  createAt     DateTime @default(now())
-  upadtedAt    DateTime @updatedAt
+model Editions {
+  id        String     @id @default(uuid())
+  editionId String
+  createAt  DateTime   @default(now())
+  upadtedAt DateTime   @updatedAt
+  playlist  Playlist[]
+}
+
+model Playlist {
+  id              String   @id @default(uuid())
+  editionId       String
+  editionRelation Editions @relation(fields: [editionId], references: [id])
+  songId          String
+  songRelation    Songs    @relation(fields: [songId], references: [id])
+  playlistOrder   Int
 }

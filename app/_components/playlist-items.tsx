@@ -2,6 +2,7 @@ import { Playlist } from "@prisma/client"
 import { Card, CardContent } from "./ui/card";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface PlayListItemProps {
     playlist: Playlist
@@ -23,9 +24,11 @@ const PlayListItem = ({ playlist }: PlayListItemProps) => {
                 </div>
                 {/* Direita Artista e Título */}
                 <div className="relative h-full w-full py-2 pl-5 border-solid border-l-2">
-                    <p>David Guetta</p>
+                    <p>Artista:{playlist.songId}</p>
                     <p>Forever Young</p>
-                    <Button className="mt-3 w-full" variant="secondary">Selecionar</Button>
+                    <Button className="mt-3 w-full" variant="secondary">
+                        <Link href={`/playlist/${playlist.id}`}>Selecionar </Link>
+                    </Button>
                 </div>
             </CardContent>
         </Card>

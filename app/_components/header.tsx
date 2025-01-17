@@ -1,4 +1,4 @@
-import { Disc3, HomeIcon, LogOutIcon, MenuIcon, StarIcon } from "lucide-react";
+import { Disc3, FileMusic, FileMusicIcon, HomeIcon, LogOutIcon, MenuIcon, StarIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import Image from "next/image";
@@ -36,6 +36,7 @@ const Header = () => {
                                     <p className="text-xs">torquati.osvaldo@gmail.com</p>   
                                 </div>
                             </div>
+                            {/* Botão Iniciar */}
                             <div className="p-5 flex flex-col gap-4 border-b border-solid" >
                                 <SheetClose asChild>
                                 <Button className="justify-start gap-2" variant="ghost" asChild>
@@ -47,19 +48,27 @@ const Header = () => {
                                 </SheetClose>
                             </div>
                             <div className="p-5 flex flex-col gap-4 border-b border-solid">
+                                {/* Botão Songs / Músicas */}
+                                <Button className="justify-start gap-2" variant="outline">
+                                    <FileMusicIcon size={18}/>
+                                    Músicas / Songs
+                                </Button>
+                                {/* Botão Playlist / Edições */}
                                 <Button className="justify-start gap-2" variant="outline">
                                     <Disc3 size={18}/>
                                     Playlists
                                 </Button>
+                                {/* Botão Favoritas / Favorites */}
                                 <Button className="justify-start gap-2" variant="outline">
                                     <StarIcon size={18}/>
-                                    Favoritas
+                                    Favoritas / Favorites
                                 </Button>
                              </div>
                              <div className="p-5 flex flex-col gap-4 border-b border-solid">
+                            {/* Botão Sair da Conta */}
                              <Button className="justify-start gap-2" variant="ghost">
                                     <LogOutIcon size={18} />
-                                    Sair da Conta
+                                    Sair da Conta / logout
                                 </Button>
                             </div>
                         </SheetContent>
