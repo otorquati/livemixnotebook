@@ -37,15 +37,14 @@ const Home = async () => {
    </div>
       
      {/* PLAYLIST DA ÚLTIMA EDIÇÃO */}
-    <h2 className="p-2 mb-2 mt-2
-     text-xs font-bold uppercase text-yellow-400">Edição n. 807 - Quarta-Feira, 15 de janeiro</h2>
+    <h2 className="p-2 text-xs font-bold uppercase text-gray-400">
+      Edição n. 807 - Quarta-Feira, 15 de janeiro </h2>
      <div className="flex gap-2 overflow-auto [&::-webkit-scrollbar]:hidden">
       {playlist.map(playlist => (<PlayListItem key={playlist.id} playlist={playlist}/>))}
      </div>
 
     {/* PREFERIDAS DO OUVITNE */ }
-    <h2 className="p-2 mb-2 mt-2
-     text-xs font-bold uppercase text-yellow-400">Suas Preferidas: 10/01/2025</h2>
+    <h2 className="p-2 text-xs font-bold uppercase text-yellow-400">Trilhas Favoritas - Atualizada em 10/01/2025</h2>
      <div className="flex gap-2 overflow-auto">
       {notebook.map(notebook => (<NotebookItem key={notebook.id} notebook={notebook}/>))}
      </div>
