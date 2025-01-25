@@ -24,8 +24,8 @@ const PlayListItem = ({ playlist }: PlayListItemProps) => {
                 </div>
                 {/* Direita Artista e Título */}
                 <div className="relative h-full w-full py-2 pl-5 border-solid border-l-2">
-                    <p>Artista:{playlist.songId}</p>
-                    <p>Forever Young</p>
+                    <p>Artista:</p>
+                    <p>Title:</p>
                     <Button className="mt-3 w-full" variant="secondary">
                         <Link href={`/playlist/${playlist.id}`}>Selecionar </Link>
                     </Button>

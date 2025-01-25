@@ -1,4 +1,4 @@
-import { Disc3, FileMusic, FileMusicIcon, HomeIcon, LogOutIcon, MenuIcon, StarIcon } from "lucide-react";
+import { Disc3, FileMusicIcon, HomeIcon, LogOutIcon, MenuIcon, StarIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import Image from "next/image";
@@ -47,21 +47,27 @@ const Header = () => {
                                 </Button>
                                 </SheetClose>
                             </div>
-                            <div className="p-5 flex flex-col gap-4 border-b border-solid">
+                            <div className="p-5 flex flex-col gap-2 border-b border-solid">
                                 {/* Botão Songs / Músicas */}
                                 <Button className="justify-start gap-2" variant="outline">
-                                    <FileMusicIcon size={18}/>
-                                    Músicas / Songs
+                                    <Link href="/musics">
+                                        <FileMusicIcon size={18}/>
+                                        Músicas / Songs
+                                    </Link>
                                 </Button>
                                 {/* Botão Playlist / Edições */}
                                 <Button className="justify-start gap-2" variant="outline">
-                                    <Disc3 size={18}/>
-                                    Playlists
+                                    <Link href="/playlist">
+                                        <Disc3 size={18}/>
+                                        Playlists
+                                    </Link>
                                 </Button>
                                 {/* Botão Favoritas / Favorites */}
                                 <Button className="justify-start gap-2" variant="outline">
-                                    <StarIcon size={18}/>
-                                    Favoritas / Favorites
+                                    <Link href="/notebook">
+                                        <StarIcon size={18}/>
+                                        Favoritas / Favorites
+                                    </Link>
                                 </Button>
                              </div>
                              <div className="p-5 flex flex-col gap-4 border-b border-solid">

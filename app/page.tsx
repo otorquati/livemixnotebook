@@ -10,11 +10,7 @@ import { Card, CardContent } from "./_components/ui/card";
 
 const Home = async () => {
   // Chama o banco de dados
-  const playlist = await db.songs.findMany({
-    include: {
-      playlist: true
-    }
-  })
+  const playlist = await db.playlist.findMany({ })
 
   // console.log({playlist})
   const notebook = await db.notebook.findMany({})
@@ -45,7 +41,7 @@ const Home = async () => {
     <h2 className="p-2 text-xs font-bold uppercase text-gray-400">
       Edição n. 807 - Quarta-Feira, 15 de janeiro </h2>
      <div className="flex gap-2 overflow-auto [&::-webkit-scrollbar]:hidden">
-      {playlist.map(playlist => (<PlayListItem key={playlist.id} playlist={playlist}/>))}
+      {playlist.map( playlist => (<PlayListItem key={playlist.id} playlist={playlist}/>))}
      </div>
 
     {/* PREFERIDAS DO OUVITNE */ }

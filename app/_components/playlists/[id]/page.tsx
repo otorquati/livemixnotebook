@@ -1,5 +1,4 @@
 import { db } from "@/app/_lib/prisma";
-
 interface PlaylistPageProps {
     params: {
         id: string
@@ -8,17 +7,21 @@ interface PlaylistPageProps {
 
 const PlaylistPage = async ({params}: PlaylistPageProps) => {
     //Chamar Banco de Dados
-    const edition = await db.editions.findUnique({
+    const playlist = await db.playlist.findMany({ 
         where: {
-            id: params.id,
+            id: params.id
         }
     })
+ 
     return ( 
-        {/* Data da Playlist */} 
-        <Image 
-            alt="Playlist LiveMix"
-            src={edition?.date}
-
+        <div>
+            <div>
+                
+                {/* Data da Playlist */} 
+                <h1>Edição: </h1>
+                <p>Data: </p>
+            </div> 
+        </div>
     );
 }
  

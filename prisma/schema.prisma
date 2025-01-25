@@ -21,18 +21,17 @@ model Users {
   image         String?
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
-  Notebook      Notebook[]
+  Notebook      Notebook?
 }
 
 model Notebook {
   id           String   @id @default(cuid())
-  userId       String
+  userId       String   @unique
   userRelation Users    @relation(fields: [userId], references: [id])
-  songId       String
-  songRelation Songs    @relation(fields: [songId], references: [id])
   ranking      Int
   createAt     DateTime @default(now())
   upadtedAt    DateTime @updatedAt
+  songs        Songs[]
 }
 
 model Songs {
@@ -56,7 +55,6 @@ model Playlist {
   id              String   @id @default(uuid())
   editionId       String
   editionRelation Editions @relation(fields: [editionId], references: [id])
-  songId          String
-  songRelation    Songs    @relation(fields: [songId], references: [id])
+  songs           Songs[]
   playlistOrder   Int
 }
