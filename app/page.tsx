@@ -10,7 +10,11 @@ import { Card, CardContent } from "./_components/ui/card";
 
 const Home = async () => {
   // Chama o banco de dados
-  const playlist = await db.playlist.findMany({ })
+  const playlist = await db.playlist.findMany({ 
+    include: {
+      edition: true,
+    }
+  })
 
   // console.log({playlist})
   const notebook = await db.notebook.findMany({})
@@ -20,8 +24,8 @@ const Home = async () => {
     <>
     <Header />
     {/* Welcome Message */}
-    <div className="flex flex-col p-5">
-      <h2 className="font-bold text-xl text-cyan-400">Olá, Osvaldo DJ Thor</h2>
+    <div className="flex flex-col p-5 sm:p-6">
+      <h2 className="font-bold text-sm md:text-xl text-gray-400 md:text-cyan-600">Olá, Osvaldo DJ Thor</h2>
       <p>Seja bem vindo ao seu caderninho virtual</p>
       <p>Segunda-feira, 13 de janeiro.</p>
       <div className="mt-4 flex items-center gap-2">
@@ -41,7 +45,7 @@ const Home = async () => {
     <h2 className="p-2 text-xs font-bold uppercase text-gray-400">
       Edição n. 807 - Quarta-Feira, 15 de janeiro </h2>
      <div className="flex gap-2 overflow-auto [&::-webkit-scrollbar]:hidden">
-      {playlist.map( playlist => (<PlayListItem key={playlist.id} playlist={playlist}/>))}
+      {playlist.map( (playlist) => (<PlayListItem key={playlist.id} playlist={playlist}/>))}
      </div>
 
     {/* PREFERIDAS DO OUVITNE */ }

@@ -12,26 +12,66 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-model Users {
-  id            String     @id @default(cuid())
+model User {
+  id            String          @id @default(cuid())
   name          String?
-  email         String     @unique
-  emailVerified String
+  email         String          @unique
+  emailVerified DateTime?
   image         String?
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
-  Notebook      Notebook?
+  accounts      Account[]
+  sessions      Session[]
+  Notebool      Notebook?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@id([provider, providerAccountId])
+}
+ 
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+ 
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+ 
+  @@id([identifier, token])
 }
 
 model Notebook {
   id           String   @id @default(cuid())
   userId       String   @unique
-  userRelation Users    @relation(fields: [userId], references: [id])
+  user User    @relation(fields: [userId], references: [id])
   ranking      Int
   createAt     DateTime @default(now())
   upadtedAt    DateTime @updatedAt
-  songs        Songs[]
+  songs Songs?        
 }
 
 model Songs {
@@ -39,13 +79,16 @@ model Songs {
   title      String
   Artist     String
   sampleAddr String?
-  playlist   Playlist[]
-  notebook   Notebook[]
+  coverImage  String?
+  notebookId String @unique 
+  Notebook Notebook @relation(fields: [notebookId], references: [id])
+  playlist  Playlist[]
 }
 
 model Editions {
   id        String     @id @default(uuid())
   editionId String
+  editionDate DateTime @default(now())
   createAt  DateTime   @default(now())
   upadtedAt DateTime   @updatedAt
   playlist  Playlist[]
@@ -54,7 +97,8 @@ model Editions {
 model Playlist {
   id              String   @id @default(uuid())
   editionId       String
-  editionRelation Editions @relation(fields: [editionId], references: [id])
-  songs           Songs[]
+  edition Editions @relation(fields: [editionId], references: [id])
+  songsId  String
+  songs Songs @relation( fields: [songsId], references: [id])
   playlistOrder   Int
 }

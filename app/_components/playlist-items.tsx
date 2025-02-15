@@ -17,15 +17,15 @@ const PlayListItem = ({ playlist }: PlayListItemProps) => {
                 <div className="relative h-[126px] w-full">
                     <Image 
                         alt="capa" 
-                        src="/Logo-LiveMix.png" 
+                        src="/Logo-LiveMix.png"
                         fill 
                         className="rounded-2xl object-center"
                     />
                 </div>
                 {/* Direita Artista e Título */}
                 <div className="relative h-full w-full py-2 pl-5 border-solid border-l-2">
-                    <p>Artista:</p>
-                    <p>Title:</p>
+                    <p>Edição: {playlist.editionId}</p>
+                    <p>Ordem: {playlist.playlistOrder}</p>
                     <Button className="mt-3 w-full" variant="secondary">
                         <Link href={`/playlist/${playlist.id}`}>Selecionar </Link>
                     </Button>
