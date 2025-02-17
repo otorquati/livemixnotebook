@@ -25,7 +25,7 @@ const Home = async () => {
     <Header />
     {/* Welcome Message */}
     <div className="flex flex-col p-5 sm:p-6">
-      <h2 className="font-bold text-sm md:text-xl text-gray-400 md:text-cyan-600">Olá, Osvaldo DJ Thor</h2>
+      <h2 className="font-bold text-sm md:text-xl text-gray-400 md:text-cyan-600">{}</h2>
       <p>Seja bem vindo ao seu caderninho virtual</p>
       <p>Segunda-feira, 13 de janeiro.</p>
       <div className="mt-4 flex items-center gap-2">
