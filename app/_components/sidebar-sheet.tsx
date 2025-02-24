@@ -45,7 +45,7 @@ const SideBarSheet = () => {
             )}
             
         {/* Botão Iniciar */}
-        <div className="p-5 flex flex-col gap-4 border-b border-solid" >
+        <div className="py-5 flex flex-col gap-4 border-b border-solid" >
             <SheetClose asChild>
             <Button className="justify-start gap-2" variant="ghost" asChild>
                 <Link href="/">
@@ -55,25 +55,25 @@ const SideBarSheet = () => {
             </Button>
             </SheetClose>
         </div>
-        <div className="p-5 flex flex-col gap-2 border-b border-solid">
+        <div className="py-5 flex flex-col gap-4 border-b border-solid">
             {/* Botão Songs / Músicas */}
-            <Button className="justify-start gap-2" variant="outline">
-                <Link href="/musics">
-                    <FileMusicIcon size={18}/>
+            <Button className="justify-start gap-2" variant="ghost">
+                <Link href="/musics">  
+                    <FileMusicIcon size={18} />
                     Músicas / Songs
                 </Link>
             </Button>
             {/* Botão Playlist / Edições */}
-            <Button className="justify-start gap-2" variant="outline">
+            <Button className="justify-start gap-2" variant="ghost">
                 <Link href="/playlist">
-                    <Disc3 size={18}/>
+                    <Disc3 size={18} />
                     Playlists
                 </Link>
             </Button>
             {/* Botão Favoritas / Favorites */}
-            <Button className="justify-start gap-2" variant="outline">
+            <Button className="justify-start gap-2" variant="ghost">
                 <Link href="/notebook">
-                    <StarIcon size={18}/>
+                    <StarIcon size={18} />
                     Favoritas / Favorites
                 </Link>
             </Button>
